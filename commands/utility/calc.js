@@ -47,9 +47,10 @@ module.exports = {
   async execute(interaction) {
     // get string input 
     const input = interaction.options.getString('input');
-    const result = calculate(input);
+    const result = calculate(input).toLocaleString();
+    ;
 
-    await interaction.reply(`result: ${result}`);
+    await interaction.reply(`Input: ${input} | Result: ${result}`);
   },
 };
 
