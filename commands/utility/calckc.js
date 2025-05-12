@@ -34,11 +34,8 @@ const validateString = (inputString) => {
 const handleString = (inputString) => {
   // first: validate input string, if true then split it
   if (validateString(inputString) ) {
-    
     //split: to get edneed and rate 
     const [ edneed, ratekc ] = inputString.trim().split(':') 
-    // test 
-    //console.log(`Test input string value after split: ${edneed} ${ratekc}`)
     
     return calculate(edneed, ratekc)
 

@@ -42,15 +42,32 @@ const calculate = (inputString) => {
   return evaluate(convertString); 
 }
 
+// validate inputString 
+const validateString = (inputString) => {
+  const regex = /^[1-9][a-z0-9*+\-\/]{1,}$/
+  
+  if ( !inputString.match(regex) ) {
+    return false
+  } else {
+    return true
+  }
+
+}
+
+
 module.exports = {
   data: calc,
   async execute(interaction) {
     // get string input 
-    const input = interaction.options.getString('input');
-    const result = calculate(input).toLocaleString();
-    ;
+    const input = interaction.options.getString('input')
 
-    await interaction.reply(`Input: ${input} | Result: ${result}`);
+    if (!validateString(input) ) {
+      await interaction.reply(`Chuỗi đã nhập không hợp lệ! Hãy thử lại!`)
+    } else {
+      const result = calculate(input).toLocaleString();
+
+      await interaction.reply(`Input: ${input} | Result: ${result}`);
+    }
   },
 };
 
